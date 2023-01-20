@@ -11,56 +11,75 @@
 //AKA - Anonymous Self-Executing Function
 (function()
 {
+
+    let MainContent = document.getElementsByTagName("main")[0];
+    let MainParagraph = document.createElement("p");
+
+    // Main paragraph initialization (This is seen on every page)
+    MainParagraph.setAttribute("id", "MainParagraph");
+    MainParagraph.setAttribute("class", "mt-3");
+    MainParagraph.textContent = "This is the main paragraph!";
+    MainContent.appendChild(MainParagraph);
+
+    // Template Strings controlling the main paragraph
+    let FirstString = "This is";
+    //let SecondString = '${FirstString} the Main Paragraph.'; ** ${} not working for me.
+    let SecondString = FirstString + ' the Main Paragraph';
+    MainParagraph.textContent = SecondString;
+
+    // HTML Article Creation
+    let Article = document.createElement("article");
+    let ArticleParagraph = '<p id="ArticleParagraph" class="mt-3">This is my article paragraph</p>';
+    Article.setAttribute("class", "container");
+    Article.innerHTML = ArticleParagraph;
+    MainContent.appendChild(Article);       // Appending article to page body.
+
+    function DisplayHomePage()
+    {
+        let AboutUsButton = document.getElementById("AboutUsButton");
+        AboutUsButton.addEventListener("click", function()
+        {
+            location.href = "about.html"
+        });
+    }
+
+    function DisplayAboutPage()
+    {
+        location.href = "about.html"
+    }
+
+    function DisplayProductsPage()
+    {
+
+    }
+
+    function DisplayServicesPage()
+    {
+
+    }
+
+    function DisplayContactPage()
+    {
+
+    }
+
     function Start()
     {
         console.log("App Started!")
-        DisplayAboutPage()  // Calls function if 'About Us' button is pressed.
+        switch(document.title)
+        {
+            case "Home":
+                DisplayHomePage();
+            case "About":
+                //DisplayAboutPage();
+            case "Products":
+                //DisplayProductsPage();
+            case "Services":
+                //DisplayServicesPage();
+            case "Contact":
+                //DisplayContactPage();
+        }
     }
     window.addEventListener("load", Start)
 }
 )();
-
-function DisplayHomePage()
-{
-    let AboutUsButton = document.getElementById("AboutUsButton");   // Reference to button on index page
-    AboutUsButton.addEventListener("click", function()           // Click event
-    {
-        location.href = "index.html"    // Redirect to:
-    });
-}
-
-function DisplayAboutPage()
-{
-    let AboutUsButton = document.getElementById("AboutUsButton");
-    AboutUsButton.addEventListener("click", function()
-    {
-        location.href = "about.html"
-    });
-}
-
-function DisplayProductsPage()
-{
-    let AboutUsButton = document.getElementById("AboutUsButton");
-    AboutUsButton.addEventListener("click", function()
-    {
-        location.href = "products.html"
-    });
-}
-
-function DisplayServicesPage()
-{
-    let AboutUsButton = document.getElementById("AboutUsButton");
-    AboutUsButton.addEventListener("click", function()
-    {
-        location.href = "services.html"
-    });
-}
-
-function DisplayContactPage()
-{
-    let AboutUsButton = document.getElementById("AboutUsButton");
-    AboutUsButton.addEventListener("click", function()
-    {
-        location.href = "contact.html"
-    });
-}
