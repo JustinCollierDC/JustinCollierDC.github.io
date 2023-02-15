@@ -15,20 +15,12 @@
         {
             console.log("Welcome to the Home Page.")
 
-            // Accessing the AboutUs button via JQuery
-            $("#AboutUsButton").on("click", () =>
-            {
-                location.href = "about.html";   // Redirect to About Us
-            })
-
             // Text element initialization
             $("main").append(`<p id="MainParagraph" class="mt-3">This is my main paragraph</p>`)
 
             $("body").append(`<article class="container"><p id="ArticleParagraph" class="mt-3">
                 &nbsp;This is my article paragraph</p></article>`)
         }
-
-
 
         function DisplayAboutPage()
         {
@@ -48,6 +40,11 @@
         function DisplayContactPage()
         {
             console.log("Welcome to the Contact Us Page.")
+
+            // Validation
+            ContactFormValidation();
+
+            // Assigning page attributes (Send Button, Subscribe Checkbox)
             let sendButton = document.getElementById("sendButton");
             let subscribeCheckbox = document.getElementById("subscribeCheckbox");
 
@@ -64,6 +61,7 @@
 
                     // Instantiating Contact Object
                     let contact = new core.Contact(inputName.value, inputNumber.value, inputEmail.value);
+
                     if(contact.serialize())
                     {
                         // Object was serialized successfully.
@@ -148,6 +146,9 @@
         {
             console.log("Edit Page");
 
+            // Validation
+            ContactFormValidation();
+
             let page = location.hash.substring(1);  // Index of '1' will skip the first character of '#' in the hash.
             switch(page)
             {
@@ -187,6 +188,8 @@
                     let contact = new core.Contact();
                     contact.deserialize(localStorage.getItem(page));
 
+                    console.log(contact.FullName);
+
                     // Display this contact's info in the edit form
                     $("#inputName").val(contact.FullName);
                     $("#inputNumber").val(contact.ContactNumber);
@@ -222,6 +225,69 @@
             }
         }
 
+        function DisplayLoginPage()
+        {
+            console.log("Welcome to the Login Page.")
+
+            // Assigning ErrorMessage area via JQuery and hiding it.
+            let messageArea = $(`#messageArea`).hide();
+
+            // Login Button Click-event
+            $("#loginButton").on("click", (event) =>
+                {
+                    let successFlag = false;
+
+                    // Instantiate a User object
+                    let newUser = new core.User();
+
+                    // Variables that collect input fields via their tag id
+                    let username = document.getElementById("username");
+                    let password = document.getElementById("password");
+
+                    // AJAX call ('get') to our users.json data file.
+                    $.get("../data/users.json", function (data)
+                    {
+                        // Iterate through users in the file
+                        for(const user of data.users)
+                        {
+                            if(username.value === user.Username && password.value === user.Password)
+                            {
+                                // Form inputs match a stored user's credentials
+                                newUser.fromJSON(user);
+                                successFlag = true;
+                                break;
+                            }
+                        }
+
+                        // Login Validation Successful
+                        if(successFlag)
+                        {
+                            // Add user to storage session
+                            messageArea.removeAttr("class").hide();
+
+                            console.log("preparing to store user in session...");
+                            sessionStorage.setItem("user", newUser.serialize());
+                            console.log("user successfully stored in session.");
+
+                            // Redirect user to secure area of the site.
+                            location.href = "contact-list.html";
+                        }
+                        else
+                        {
+                            // User credentials do not match any stored data
+                            $("username").trigger("focus").trigger("select");
+                            messageArea.addClass("alert alert-danger").text("ERROR: Invalid Login Credentials").show();
+                        }
+                    });
+                }
+            )
+        }
+
+        function DisplayRegisterPage()
+        {
+            console.log("Welcome to the Register Page.")
+        }
+
         /**
          *
          * @param {String} fullName
@@ -229,6 +295,7 @@
          * @param {String} emailAddress
          * @constructor
          */
+        // Method to add a Contact to storage
         function AddContact(fullName, contactNumber, emailAddress)
         {
             let contact = new core.Contact(fullName, contactNumber, emailAddress);
@@ -241,9 +308,144 @@
             }
         }
 
+        /**
+         *
+         * @param displayName
+         * @param emailAddress
+         * @param username
+         * @param password
+         * @constructor
+         */
+        // Method to add a User to storage
+        function AddUser(displayName, emailAddress, username, password)
+        {
+            let contact = new core.User(displayName, emailAddress, username, password);
+
+            // Validation
+            if(contact.serialize())
+            {
+                let key = contact.DisplayName.substring(0,1) + Date.now();
+                localStorage.setItem(key, contact.serialize());
+            }
+        }
+
+        // Validation Functions
+        /**
+         *
+         * @constructor
+         */
+        function ContactFormValidation()
+        {
+            // Name
+            ValidateField("#inputName", /^([A-Z][a-z]{1,3}\\.?\\s)?([A-Z][a-z]+)+([\\s,-]([A-z][a-z]+))*$/,
+                "Please enter a valid First and Last Name (Firstname Lastname)")
+
+            // Number
+            ValidateField("#inputNumber", /^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]\d{4}$/,
+                "Please enter a valid Contact Number (999-999-9999)")
+
+            // Email
+            ValidateField("#inputEmail", /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z]{2,10}$/,
+                "Please enter a valid Email Address (text@text.text)")
+        }
+
+        /**
+         *
+         * @param {String} input_field_id
+         * @param {RegExp} regular_expression
+         * @param {String} error_message
+         * @constructor
+         */
+        function ValidateField(input_field_id, regular_expression, error_message)
+        {
+            // Assigning ErrorMessage area via JQuery and hiding it.
+            let messageArea = $(`#messageArea`).hide();
+
+            // On loss of element focus
+            $(input_field_id).on("blur", function()
+                {
+                    let inputFieldText = $(this).val();
+
+                    // Validating using the passed in regular expression pattern
+                    if(!regular_expression.test(inputFieldText))
+                    {
+                        // Validation failed.
+                        $(this).trigger("focus").trigger("select");
+                        messageArea.addClass("alert alert-danger").text(error_message).show();
+                    }
+                    else
+                    {
+                        // Validation passed.
+                        messageArea.removeAttr("class").hide();
+                    }
+                }
+            )
+        }
+
+        function LoadHeader(html_data)
+        {
+            // Inject the html code from html_data to the page header
+            $("header").html(html_data);
+            // Check if a user is logged in (Login/Logout functionality)
+            CheckLogin();
+            // Set the current page in the navbar to "active"
+            $(`li>a:contains(${document.title})`).addClass("active");
+        }
+
+        function AjaxRequest(method, url, callback)
+        {
+            // Step 1. Instantiate XHR object
+            let xhr = new XMLHttpRequest();
+
+            // Step 2. Add listener for 'readystatechange' event
+            xhr.addEventListener("readystatechange", () =>
+            {
+                //Check that XMLHttpRequest call is finished (ReadyState == 4)
+                if(xhr.readyState === 4 && xhr.status === 200)
+                {
+                    if(typeof callback === "function")
+                    {
+                        callback(xhr.responseText);
+                    }
+                    else
+                    {
+                        console.error("ERROR: callback not a function")
+                    }
+                }
+            });
+
+            // Step 3. Open a connection to the server, perform local call to url (web url OR html file path)
+            xhr.open(method, url)
+
+            xhr.send();
+        }
+
+        function CheckLogin()
+        {
+            // Check if a 'user' has been stored (logged in)
+            if(sessionStorage.getItem("user"))
+            {
+                // Change Login to Logout on navbar.
+                $("#loginNav").html(`<a id="logoutNav" className="nav-link" aria-current="page" href="#">
+                    <i class="fas fa-sign-out-alt"></i> Logout</a>`);
+            }
+
+            $("#logoutNav").on("click", function()
+            {
+                // Perform logout
+                sessionStorage.clear();
+                // Redirect to login page
+                location.href = "login.html";
+            });
+        }
+
         function Start()
         {
             console.log("App Started!")
+
+            // Loading header html code via AJAX
+            AjaxRequest("GET", "header.html", LoadHeader);
+
             switch(document.title)
             {
                 case "Home":
@@ -263,8 +465,16 @@
                     break;
                 case "Contact List":
                     DisplayContactListPage();
+                    break;
                 case "Edit Contact":
                     DisplayEditPage();
+                    break;
+                case "Login":
+                    DisplayLoginPage();
+                    break;
+                case "Register":
+                    DisplayRegisterPage();
+                    break;
             }
         }
         window.addEventListener("load", Start)

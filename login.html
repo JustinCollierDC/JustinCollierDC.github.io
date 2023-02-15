@@ -1,0 +1,85 @@
+<!--
+ Author: Justin Collier
+ Title: Login Page
+ Date: 2/14/2023
+ Purpose: The Login contact page of my website.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Login </title>
+
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
+  <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.css"> <!-- FontAwesome -->
+  <link rel="stylesheet" href="./content/app.css">
+
+</head>
+
+<body>
+
+<header>
+</header>
+
+<!-- Main -->
+<main class="container" id="mainContent">
+  <h1 id="loginHeader"> Login </h1>
+
+  <!-- Error Message Area -->
+  <div id="messageArea"></div>
+
+  <div class="row">
+    <div class="offset-md-3 col-md-6 col-sm-12">
+      <div class="login" id="contentArea">
+        <h1 class="display-4">Login</h1>
+        <form id="loginForm" novalidate>
+
+          <div class="form-group mb-2">
+            <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-user">
+                            </i>
+                          </span>
+              <input type="text" class="form-control" id="username" name="username"  required
+                     value="" placeholder="Enter your username">
+            </div>
+
+          </div>
+
+          <div class="form-group mb-2">
+            <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-lock">
+                            </i>
+                          </span>
+              <input type="password" class="form-control" id="password" name="password"  required
+                     value="" placeholder="Enter your password">
+            </div>
+
+          </div>
+          <div class="text-end">
+            <button id="loginButton" name="loginButton" type="button" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i>Login</button>
+            <button id="cancelButton" name="cancelButton" type="button" class="btn btn-warning btn-lg"><i class="fas fa-undo"></i>Cancel</button>
+          </div>
+        </form>
+
+      </div>
+      <p class="text-center text-muted small">
+        Don't have an account?
+        <a href="register.html">Register Here!</a>
+      </p>
+    </div>
+  </div>
+</main>
+
+<!-- Scripting Section -->
+<script src="./node_modules/jquery/dist/jquery.js"></script>                 <!-- JQuery (js) -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>    <!-- JQuery Bootstrap -->
+<script src="./scripts/app.js"></script>                                     <!-- App JavaScript -->
+<script src="./scripts/namespace.js"></script>                               <!-- Namespace Class (js) -->
+<script src="./scripts/user.js"></script>                                    <!-- User Class (js) -->
+
+</body>
+</html>
