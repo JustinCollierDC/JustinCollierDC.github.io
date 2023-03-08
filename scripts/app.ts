@@ -461,7 +461,7 @@
 
         function LoadHeader()
         {
-            $.get("/views/components/#header.html", function(html_data)
+            $.get("/views/components/header.html", function(html_data)
             {
 
                 // Inject the html code from html_data to the page header
@@ -480,7 +480,7 @@
 
         function LoadFooter()
         {
-            $.get("/views/components/#footer.html", function(html_data)
+            $.get("/views/components/footer.html", function(html_data)
             {
                 // Inject the html code from html_data to the pa
                 // get footer

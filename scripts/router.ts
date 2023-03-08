@@ -78,16 +78,16 @@ let router : core.Router = new core.Router();
 // Adding default routes
 router.AddTable(
     [
-        "/#",
-        "/#home",
-        "/#about",
-        "/#services",
-        "/#contact",
-        "/#contact-list",
-        "/#edit",
-        "/#products",
-        "/#register",
-        "/#login"
+        "#/",
+        "#/home",
+        "#/about",
+        "#/services",
+        "#/contact",
+        "#/contact-list",
+        "#/edit",
+        "#/products",
+        "#/register",
+        "#/login"
     ]
 );
 
@@ -96,5 +96,5 @@ let route : string = location.pathname;
 // If route is of positive index proceed -> If route is "/" set page to home, otherwise ignore / and set page to name.
 // If route is -1, set to "404"
 router.ActiveLink = (router.Find(route) > -1)
-                    ? (route === "/#") ? "home" : route.substring(1)
+                    ? (route === "#/") ? "home" : route.substring(1)
                     : ("404");
