@@ -68,16 +68,16 @@
             }
             contactList.innerHTML = data;
             $("#addButton").on("click", () => {
-                location.href = "edit.html#add";
+                location.href = "#edit.html#add";
             });
             $("button.edit").on("click", function () {
-                location.href = "edit.html#" + $(this).val();
+                location.href = "#edit.html#" + $(this).val();
             });
             $("button.delete").on("click", function () {
                 if (confirm("Delete contact, are you sure?")) {
                     localStorage.removeItem($(this).val());
                 }
-                location.href = "contact-list.html";
+                location.href = "#contact-list.html";
             });
         }
     }
@@ -95,10 +95,10 @@
                     let inputEmail = document.getElementById("inputEmail");
                     event.preventDefault();
                     AddContact(inputName.value, inputNumber.value, inputEmail.value);
-                    location.href = "contact-list.html";
+                    location.href = "#contact-list.html";
                 });
                 $("#cancelButton").on("click", () => {
-                    location.href = "contact-list.html";
+                    location.href = "#contact-list.html";
                 });
                 break;
             default:
@@ -115,10 +115,10 @@
                         contact.ContactNumber = $("inputNumber").val();
                         contact.EmailAddress = $("inputEmail").val();
                         localStorage.setItem(page, contact.serialize());
-                        location.href = "contact-list.html";
+                        location.href = "#contact-list.html";
                     });
                     $("#cancelButton").on("click", () => {
-                        location.href = "contact-list.html";
+                        location.href = "#contact-list.html";
                     });
                 }
                 break;
@@ -145,7 +145,7 @@
                     console.log("preparing to store user in session...");
                     sessionStorage.setItem("user", newUser.serialize());
                     console.log("user successfully stored in session.");
-                    location.href = "contact-list.html";
+                    location.href = "#contact-list.html";
                 }
                 else {
                     $("username").trigger("focus").trigger("select");
@@ -211,7 +211,7 @@
         }
         $("#logoutNav").on("click", function () {
             sessionStorage.clear();
-            location.href = "login.html";
+            location.href = "#login.html";
         });
     }
     function Display404Page() {
@@ -236,7 +236,7 @@
         }
     }
     function LoadHeader() {
-        $.get("/views/components/header.html", function (html_data) {
+        $.get("/views/components/#header.html", function (html_data) {
             $("header").html(html_data);
             document.title = capitalizeFirstLetter(router.ActiveLink);
             $(`li>a:contains(${document.title})`).addClass("active");
@@ -244,7 +244,7 @@
         });
     }
     function LoadFooter() {
-        $.get("/views/components/footer.html", function (html_data) {
+        $.get("/views/components/#footer.html", function (html_data) {
             $("footer").html(html_data);
         });
     }

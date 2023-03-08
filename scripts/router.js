@@ -38,19 +38,19 @@ var core;
 })(core || (core = {}));
 let router = new core.Router();
 router.AddTable([
-    "/",
-    "/home",
-    "/about",
-    "/services",
-    "/contact",
-    "/contact-list",
-    "/edit",
-    "/products",
-    "/register",
-    "/login"
+    "/#",
+    "/#home",
+    "/#about",
+    "/#services",
+    "/#contact",
+    "/#contact-list",
+    "/#edit",
+    "/#products",
+    "/#register",
+    "/#login"
 ]);
 let route = location.pathname;
 router.ActiveLink = (router.Find(route) > -1)
-    ? (route === "/") ? "home" : route.substring(1)
+    ? (route === "/#") ? "home" : route.substring(1)
     : ("404");
 //# sourceMappingURL=router.js.map
