@@ -117,14 +117,14 @@
 
                 $("#addButton").on("click", () =>
                     {
-                        location.href = "edit.html#add";  // #add passes a parameter named 'add' to the URL
+                        location.href = "#edit.html#add";  // #add passes a parameter named 'add' to the URL
                     }
                 );
 
                 // Contact's Edit Button
                 $("button.edit").on("click", function()
                     {
-                        location.href = "edit.html#" + $(this).val();
+                        location.href = "#edit.html#" + $(this).val();
                     }
                 )
 
@@ -136,7 +136,7 @@
                         {
                             localStorage.removeItem($(this).val() as string)  // Remove using current object's key value
                         }
-                        location.href = "contact-list.html";
+                        location.href = "#contact-list.html";
                     }
                 )
             }
@@ -169,14 +169,14 @@
                             AddContact(inputName.value, inputNumber.value, inputEmail.value);
 
                             // Refresh page
-                            location.href = "contact-list.html";
+                            location.href = "#contact-list.html";
                         }
                     )
 
                     // Cancel Button
                     $("#cancelButton").on("click", () =>
                         {
-                            location.href = "contact-list.html";
+                            location.href = "#contact-list.html";
                         }
                     )
                     break;
@@ -209,14 +209,14 @@
                             localStorage.setItem(page, contact.serialize() as string);
 
                             // Return to the contact-list page
-                            location.href = "contact-list.html";
+                            location.href = "#contact-list.html";
                         }
                     )
 
                     // Cancel button is clicked
                     $("#cancelButton").on("click", () =>
                         {
-                            location.href = "contact-list.html";
+                            location.href = "#contact-list.html";
                         }
                     )
 
@@ -273,7 +273,7 @@
                             console.log("user successfully stored in session.");
 
                             // Redirect user to secure area of the site.
-                            location.href = "contact-list.html";
+                            location.href = "#contact-list.html";
                         }
                         else
                         {
@@ -429,7 +429,7 @@
                 // Perform logout
                 sessionStorage.clear();
                 // Redirect to login page
-                location.href = "login.html";
+                location.href = "#login.html";
             });
         }
 
@@ -461,7 +461,7 @@
 
         function LoadHeader()
         {
-            $.get("/views/components/header.html", function(html_data)
+            $.get("/views/components/#header.html", function(html_data)
             {
 
                 // Inject the html code from html_data to the page header
@@ -480,7 +480,7 @@
 
         function LoadFooter()
         {
-            $.get("/views/components/footer.html", function(html_data)
+            $.get("/views/components/#footer.html", function(html_data)
             {
                 // Inject the html code from html_data to the pa
                 // get footer
