@@ -1,14 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const http_1 = __importDefault(require("http"));
-const fs_1 = __importDefault(require("fs"));
-const mime_types_1 = __importDefault(require("mime-types"));
-let lookup = mime_types_1.default.lookup;
+import http from 'http';
+import fs from 'fs';
+import mime from 'mime-types';
+let lookup = mime.lookup;
 const port = process.env.PORT || 3000;
-const server = http_1.default.createServer((req, res) => {
+const server = http.createServer((req, res) => {
     let path = req.url;
     console.log(__dirname);
     console.log(path);
@@ -17,7 +13,7 @@ const server = http_1.default.createServer((req, res) => {
     }
     let mime_type = lookup(path.substring(1));
     console.log("mime-type: " + mime_type);
-    fs_1.default.readFile(__dirname, function (err, data) {
+    fs.readFile(__dirname, function (err, data) {
         if (err) {
             res.writeHead(404);
             res.end("Error 404 - File Not Found " + err.message);
