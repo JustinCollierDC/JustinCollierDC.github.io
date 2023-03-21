@@ -2,6 +2,10 @@
 import http from 'http';
 import fs from 'fs';
 import mime from 'mime-types';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 let lookup = mime.lookup;
 const port = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
