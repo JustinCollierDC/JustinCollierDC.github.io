@@ -28,7 +28,7 @@ const server = http.createServer((req, res) =>
 
     if(path === "/" || path === "/home")
     {
-        path = "index.html";
+        path = "/index.html";
     }
 
     let mime_type : string = lookup(path.substring(1)) as string;

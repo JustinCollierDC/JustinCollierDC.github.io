@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
     console.log(__dirname);
     console.log(path);
     if (path === "/" || path === "/home") {
-        path = "index.html";
+        path = "/index.html";
     }
     let mime_type = lookup(path.substring(1));
     console.log("mime-type: " + mime_type);
