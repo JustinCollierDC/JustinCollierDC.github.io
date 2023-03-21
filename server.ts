@@ -8,11 +8,13 @@ import fs from 'fs';
 import mime from 'mime-types';
 
 // Below is for fixing '__dirname not defined error' - Source: https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
+/*
 import path from 'path';
 import { fileURLToPath } from 'url';
 // @ts-ignore
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+ */
 
 let lookup = mime.lookup;
 
@@ -33,7 +35,7 @@ const server = http.createServer((req, res) =>
     let mime_type : string = lookup(path.substring(1)) as string;
     console.log("mime-type: " + mime_type);
 
-    fs.readFile(__dirname, function(err, data)
+    fs.readFile(__dirname + path, function(err, data)
     {
         if(err)
         {
