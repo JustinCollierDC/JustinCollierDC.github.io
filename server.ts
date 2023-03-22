@@ -43,7 +43,7 @@ const server = http.createServer((req, res) =>
             return;
         }
         res.setHeader("X-Content-Type-Options", "nosniff");
-        res.writeHead(200);
+        res.writeHead(200, {'Content-Type': mime_type});
         res.end(data);
     });
 });
