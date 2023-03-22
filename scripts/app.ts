@@ -543,7 +543,7 @@
         function LoadHeader(): void
         {
             // use AJAX to load the header content
-            $.get("./Views/components/header.html", function(html_data)
+            $.get("./views/components/header.html", function(html_data)
             {
                 // inject Header content into the page
                 $("header").html(html_data);
