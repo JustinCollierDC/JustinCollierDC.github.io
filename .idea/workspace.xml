@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49a63bd1-6016-47bd-8bdc-51683a675dc9" name="Changes" comment="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;">
+    <list default="true" id="49a63bd1-6016-47bd-8bdc-51683a675dc9" name="Changes" comment="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;&#10;+ Fixed case sensitivity error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/app.ts" afterDir="false" />
     </list>
@@ -51,7 +51,8 @@
       <workItem from="1679438253320" duration="4452000" />
       <workItem from="1679524540090" duration="443000" />
       <workItem from="1679525011170" duration="863000" />
-      <workItem from="1679526129490" duration="452000" />
+      <workItem from="1679526129490" duration="515000" />
+      <workItem from="1679596123750" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="ICE 5 - Submission/Render">
       <created>1679438489714</created>
@@ -137,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679525802183</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;&#10;+ Fixed case sensitivity error">
+      <created>1679526636980</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1679526636980</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +174,7 @@
     <MESSAGE value="ICE 5 - Submission/Render&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs" />
     <MESSAGE value="ICE 5 - Submission/Render&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;" />
     <MESSAGE value="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;" />
+    <MESSAGE value="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;&#10;+ Fixed case sensitivity error" />
+    <option name="LAST_COMMIT_MESSAGE" value="ICE 5 - Submission/Render + Fixes&#10;+ Re-Added ' &quot;type&quot;: &quot;module&quot;, ' to fix bugs&#10;- Commented out &quot;module&quot;:&quot;commonJS&quot;&#10;+ Fixed case sensitivity error" />
   </component>
 </project>

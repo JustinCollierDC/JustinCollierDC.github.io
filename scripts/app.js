@@ -276,7 +276,7 @@
         }
     }
     function LoadHeader() {
-        $.get("./Views/components/header.html", function (html_data) {
+        $.get("/views/components/header.html", function (html_data) {
             $("header").html(html_data);
             AddNavigationEvents();
             CheckLogin();
@@ -290,7 +290,7 @@
     function LoadContent() {
         let page_name = router.ActiveLink;
         let callback = ActiveLinkCallBack();
-        $.get(`./Views/content/${page_name}.html`, function (html_date) {
+        $.get(`/views/content/${page_name}.html`, function (html_date) {
             $("main").html(html_date);
             callback();
         });

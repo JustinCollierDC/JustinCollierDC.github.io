@@ -543,7 +543,7 @@
         function LoadHeader(): void
         {
             // use AJAX to load the header content
-            $.get("./views/components/header.html", function(html_data)
+            $.get("/views/components/header.html", function(html_data)
             {
                 // inject Header content into the page
                 $("header").html(html_data);
@@ -574,7 +574,7 @@
         {
             let page_name = router.ActiveLink; // alias for the Active Link
             let callback = ActiveLinkCallBack(); // returns a reference to the correct function
-            $.get(`./Views/content/${page_name}.html`, function(html_date)
+            $.get(`/views/content/${page_name}.html`, function(html_date)
             {
                 $("main").html(html_date);
                 callback(); // calling the correct function
